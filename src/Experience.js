@@ -57,6 +57,8 @@ export default class Experience {
 
     this.cookieMaterialRef = null;
 
+    this.isWheelSpinning = false;
+
     // Resize event
     this.sizes.on("resize", () => {
       this.resize();
@@ -186,6 +188,8 @@ export default class Experience {
   }
 
   randomPick = () => {
+    if(this.isWheelSpinning) return;
+    this.isWheelSpinning = true;
     const cookieIndex = Math.floor(Math.random() * this.numberOfCookies);
     console.log("Pick = " + cookieIndex);
 
@@ -209,6 +213,7 @@ export default class Experience {
       },
       onComplete: () => {
         console.log(cookieDB.cookies[cookieIndex].name);
+        this.isWheelSpinning = false;
       },
     });
   };
