@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import * as dat from 'lil-gui';
+import gsap from "gsap";
 
 
 import World from './World.js';
@@ -41,6 +42,18 @@ export default class Experience {
 
         this.isInCookieSelection = false;
 
+        this.cameraInPosition = new THREE.Vector3();
+        this.cameraOutPosition = new THREE.Vector3();
+        this.cameraInTarget = new THREE.Vector3();
+        this.cameraOutTarget = new THREE.Vector3();
+
+        this.raycastTargetMesh = new THREE.Mesh();
+
+        this.disableRaycast = false;
+
+        this.mouseStart = new THREE.Vector2();
+        this.mouseEnd = new THREE.Vector2();
+
         // Resize event
         this.sizes.on('resize', () => {
             this.resize();
@@ -49,6 +62,84 @@ export default class Experience {
         // Time tick event
         this.time.on('tick', () => {
             this.update();
+        });
+
+        // add mouse down event
+        window.addEventListener("mousedown", (event) => {
+            this.mouseStart.x = event.clientX;
+            this.mouseStart.y = event.clientY;
+        });
+
+        // add mouse up event
+        window.addEventListener("mouseup", (event) => {
+            this.mouseEnd.x = event.clientX;
+            this.mouseEnd.y = event.clientY;
+
+            if (this.mouseStart.distanceTo(this.mouseEnd) < 1) {
+                if (this.disableRaycast) {
+                    this.disableRaycast = false;
+                }
+            } else {
+                this.disableRaycast = true;
+            }
+        });
+
+        //Create raycaster and cast on click
+const raycaster = new THREE.Raycaster();
+
+//cast on click
+window.addEventListener("click", (event) => {
+	if (this.disableRaycast) return;
+	//mouse position
+	const mouse = new THREE.Vector2(
+		(event.clientX / this.sizes.width) * 2 - 1,
+		-(event.clientY / this.sizes.height) * 2 + 1
+	);
+
+	raycaster.setFromCamera(mouse, this.camera.instance);
+
+	const intersects = raycaster.intersectObjects(this.scene.children, true);
+	//console.log(intersects);
+
+	if (intersects.length > 0) {
+		if (this.isInCookieSelection) {
+			gsap.to(this.camera.instance.position, {
+				x: this.cameraOutPosition.position.x,
+				y: this.cameraOutPosition.position.y,
+				z: this.cameraOutPosition.position.z,
+				duration: 1,
+				ease: "power2.inOut",
+			});
+			gsap.to(this.camera.controls.target, {
+				x: this.cameraOutTarget.position.x,
+				y: this.cameraOutTarget.position.y,
+				z: this.cameraOutTarget.position.z,
+				duration: 0.5,
+				ease: "power2.inOut",
+			});
+			this.isInCookieSelection = false;
+			//controls.enabled = false;
+		} else if (intersects[0].object.name === "RaycastTarget") {
+			gsap.to(this.camera.instance.position, {
+				x: this.cameraInPosition.position.x,
+				y: this.cameraInPosition.position.y + 1,
+				z: this.cameraInPosition.position.z,
+				duration: 1,
+				ease: "power2.inOut",
+			});
+			gsap.to(this.camera.controls.target, {
+				x: this.cameraInTarget.position.x,
+				y: this.cameraInTarget.position.y,
+				z: this.cameraInTarget.position.z,
+				duration: 0.5,
+				ease: "power2.inOut",
+			});
+			this.isInCookieSelection = true;
+			//controls.enabled = true;
+		}
+
+                //randomPick();
+            }
         });
     }
 

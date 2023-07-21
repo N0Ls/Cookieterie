@@ -1,5 +1,7 @@
 import Experience from './Experience.js';
 import CookiePlane from './scene/CookiePlane.js';
+import Cookieterie from './scene/Cookieterie.js';
+
 export default class World {
   constructor() {
     this.experience = new Experience();
@@ -9,6 +11,7 @@ export default class World {
 
     // Wait for resources
     this.resources.on('ready', () => {
+      this.cookieterie = new Cookieterie();
       this.cookiePlane = new CookiePlane();
       //this.lighting = new Lighting();
 
@@ -17,6 +20,7 @@ export default class World {
   }
 
   init() {
+    this.cookieterie.init();
     this.cookiePlane.init();
   }
 

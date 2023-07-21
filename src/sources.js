@@ -10,9 +10,14 @@ export default [
     path: './textures/cookieTextureTest2.png'
   },
   {
-    name: 'nameFont',
-    type: 'font',
-    path : './fonts/Montserrat_Bold.json'
+    name: 'bakedCookieTexture',
+    type: 'texture',
+    path: './textures/Cookies.jpg'
+  },
+  {
+    name: 'cookieterie',
+    type: 'gltfModel',
+    path: './models/Cookieterie.glb'
   },
   {
     name: 'environmentMapTexture',

@@ -14,12 +14,6 @@ export default class CookiePlane
         this.sizes = this.experience.sizes
         this.gui = this.experience.gui
 
-        this.refAspect = 1920 / 1080
-
-        this.debugObject = {
-            progress: 0,
-            progress2: 0,
-        }
     }
 
     init(){
@@ -32,7 +26,7 @@ export default class CookiePlane
 
     setGeometry()
     {
-        this.geometry = new THREE.PlaneGeometry(2, 2, 20, 20)
+        this.geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
     }
 
     setTextures()
@@ -64,25 +58,22 @@ export default class CookiePlane
     setMesh()
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
-        // this.mesh.rotation.y = Math.PI * 0.25;
-        // this.mesh.rotation.x = -Math.PI * 0.5;
-        // this.mesh.rotation.z = Math.PI * 0.5;
-        // this.mesh.scale.set(0.35, 0.35, 0.35);
+        this.mesh.rotation.y = Math.PI * 0.25;
+        this.mesh.rotation.x = -Math.PI * 0.5;
+        this.mesh.rotation.z = Math.PI * 0.5;
+        this.mesh.scale.set(0.35, 0.35, 0.35);
         this.scene.add(this.mesh)
+        console.log(this.experience.raycastTargetMesh.position )
+        this.mesh.position.set(
+            this.experience.raycastTargetMesh.position.x + 0.01,
+            this.experience.raycastTargetMesh.position.y + 0.01,
+            this.experience.raycastTargetMesh.position.z
+        );
     }
 
     setGUI()
     {
-        this.gui.add(this.debugObject, 'progress').min(0).max(1).step(0.001).onChange(() =>
-        {
-            this.material.uniforms.progress.value = this.debugObject.progress
-        }
-        )
-        this.gui.add(this.debugObject, 'progress2').min(0).max(1).step(0.001).onChange(() =>
-        {
-            this.material.uniforms.progress2.value = this.debugObject.progress2
-        }
-        )
+
     }
 
 
