@@ -46,7 +46,6 @@ body {
   touch-action: manipulation;
   transition: background-color 0.5s ease;
   transition: opacity 1s ease;
-  opacity: 0;
 }
 
 .randomCookieButton:hover,
@@ -56,10 +55,19 @@ body {
 
 .selectionDiv{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
     width: 100vw;
     bottom: 119px;
+    transition: opacity 1s ease;
+    opacity: 0;
 
+}
+
+.selectedCookie{
+    font-family: sans-serif;
+    margin-bottom: 25px;
+    color: white;
 }

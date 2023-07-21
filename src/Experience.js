@@ -123,7 +123,7 @@ export default class Experience {
             ease: "power2.inOut",
           });
           this.isInCookieSelection = false;
-          this.randomButton.style.opacity = 0;
+          this.selectionDiv.style.opacity = 0;
           //controls.enabled = false;
         } else if (intersects[0].object.name === "RaycastTarget") {
           gsap.to(this.camera.instance.position, {
@@ -141,7 +141,7 @@ export default class Experience {
             ease: "power2.inOut",
           });
           this.isInCookieSelection = true;
-          this.randomButton.style.opacity = 1;
+          this.selectionDiv.style.opacity = 1;
           //controls.enabled = true;
         }
 
@@ -154,6 +154,9 @@ export default class Experience {
         event.stopPropagation()
         this.randomPick();
     });
+
+    this.selectedCookieText = document.querySelector('.selectedCookie');
+    this.selectionDiv = document.querySelector('.selectionDiv');
   }
 
   resize() {
@@ -188,6 +191,7 @@ export default class Experience {
   }
 
   randomPick = () => {
+    this.selectedCookieText.innerHTML = "Picking...";
     if(this.isWheelSpinning) return;
     this.isWheelSpinning = true;
     const cookieIndex = Math.floor(Math.random() * this.numberOfCookies);
@@ -213,6 +217,7 @@ export default class Experience {
       },
       onComplete: () => {
         console.log(cookieDB.cookies[cookieIndex].name);
+        this.selectedCookieText.innerHTML = cookieDB.cookies[cookieIndex].name;
         this.isWheelSpinning = false;
       },
     });
