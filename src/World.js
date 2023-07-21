@@ -24,4 +24,9 @@ export default class World {
     this.cookiePlane.init();
   }
 
+  update() {
+    if (this.cookiePlane)
+    this.cookiePlane.update();
+  }
+
 }

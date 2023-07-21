@@ -53,6 +53,8 @@ export default class CookiePlane
         })
         this.material.wireframe = false
         this.material.needsUpdate = true
+
+        this.experience.cookieMaterialRef = this.material
     }
 
     setMesh()
@@ -74,6 +76,11 @@ export default class CookiePlane
     setGUI()
     {
 
+    }
+
+    update()
+    {
+        this.material.uniforms.uTime.value = this.experience.time.elapsed
     }
 
 

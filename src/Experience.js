@@ -12,6 +12,8 @@ import Resources from './utils/Resources.js';
 
 import sources from './sources.js';
 
+import cookieDB from "./cookies.json";
+
 let instance = null;
 
 export default class Experience {
@@ -53,6 +55,8 @@ export default class Experience {
 
         this.mouseStart = new THREE.Vector2();
         this.mouseEnd = new THREE.Vector2();
+
+        this.cookieMaterialRef = null;
 
         // Resize event
         this.sizes.on('resize', () => {
@@ -151,6 +155,7 @@ window.addEventListener("click", (event) => {
     update() {
         this.camera.update();
         this.renderer.update();
+        this.world.update();
     }
 
     init() {
@@ -166,7 +171,7 @@ window.addEventListener("click", (event) => {
         
         const functionButton = {
             doSomething: () => {
-                this.onDoSomething();
+                this.randomPick();
             },
         };
         this.gui.add(functionButton, "doSomething").name("Function Button");
@@ -174,6 +179,34 @@ window.addEventListener("click", (event) => {
         this.gui.close();
 
     }
+
+    randomPick = () => {
+        const cookieIndex = Math.floor(Math.random() * this.numberOfCookies);
+        console.log("Pick = " + cookieIndex);
+    
+        const indexObject = { index: this.cookieMaterialRef.uniforms.uIndex.value };
+    
+        gsap.to(indexObject, {
+            keyframes: [
+                {
+                    index: this.numberOfCookies,
+                    duration: 3,
+                },
+                {
+                    index: cookieIndex + this.numberOfCookies,
+                    duration: 2,
+                },
+            ],
+            ease: "power2.inOut",
+            onUpdate: () => {
+               this.cookieMaterialRef.uniforms.uIndex.value =
+                    indexObject.index % this.numberOfCookies;
+            },
+            onComplete: () => {
+                console.log(cookieDB.cookies[cookieIndex].name);
+            },
+        });
+    };
 
     onDoSomething() {
         console.log("Do something");
