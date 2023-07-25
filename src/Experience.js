@@ -122,6 +122,16 @@ export default class Experience {
             duration: 0.5,
             ease: "power2.inOut",
           });
+          gsap.to(this.camera.instance, {
+            fov: 75,
+            duration: 1,
+            ease: "power2.inOut",
+            onUpdate: () => {
+              this.camera.instance.updateProjectionMatrix();
+            }
+          });
+          console.log(this.camera.instance)
+          this.camera.controls.enableRotate = true;
           this.isInCookieSelection = false;
           this.selectionDiv.style.opacity = 0;
           //controls.enabled = false;
@@ -140,6 +150,15 @@ export default class Experience {
             duration: 0.5,
             ease: "power2.inOut",
           });
+          gsap.to(this.camera.instance, {
+            fov: 35,
+            duration: 1,
+            ease: "power2.inOut",
+            onUpdate: () => {
+              this.camera.instance.updateProjectionMatrix();
+            }
+          });
+          this.camera.controls.enableRotate = false;
           this.isInCookieSelection = true;
           this.selectionDiv.style.opacity = 1;
           //controls.enabled = true;
