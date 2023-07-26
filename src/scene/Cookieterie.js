@@ -62,6 +62,9 @@ export default class Cookieterie
         const computerScreenMesh = this.model.children.find(
             (child) => child.name === "ComputerScreen"
         );
+        const computerScreen2Mesh = this.model.children.find(
+            (child) => child.name === "ComputerScreen2"
+        );
         this.experience.raycastTargetMesh = this.model.children.find(
             (child) => child.name === "RaycastTarget"
         );
@@ -81,6 +84,7 @@ export default class Cookieterie
         glowDoorMesh.material = poleLightMaterial;
         glowWindowMesh.material = poleLightMaterial;
         computerScreenMesh.material = computerScreenMaterial;
+        computerScreen2Mesh.material = computerScreenMaterial;
         cookieWindowMesh.material = glassMaterial;
         cookieWindowMesh2.material = glassMaterial;
 
