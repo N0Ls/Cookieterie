@@ -63,7 +63,7 @@ export default class CookiePlane
         this.mesh.rotation.y = Math.PI * 0.25;
         this.mesh.rotation.x = -Math.PI * 0.5;
         this.mesh.rotation.z = Math.PI * 0.5;
-        this.mesh.scale.set(0.35, 0.35, 0.35);
+        this.mesh.scale.set(0.355, 0.355, 0.355);
         this.scene.add(this.mesh)
         console.log(this.experience.raycastTargetMesh.position )
         this.mesh.position.set(

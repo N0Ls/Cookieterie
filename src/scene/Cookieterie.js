@@ -39,6 +39,8 @@ export default class Cookieterie
 
         const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
 
+        const computerScreenMaterial = new THREE.MeshBasicMaterial({ color: 0x707070 });
+
         const glassMaterial = new THREE.MeshPhysicalMaterial({
             roughness: 0,
             transmission: 1,
@@ -78,7 +80,7 @@ export default class Cookieterie
     
         glowDoorMesh.material = poleLightMaterial;
         glowWindowMesh.material = poleLightMaterial;
-        computerScreenMesh.material = poleLightMaterial;
+        computerScreenMesh.material = computerScreenMaterial;
         cookieWindowMesh.material = glassMaterial;
         cookieWindowMesh2.material = glassMaterial;
 
