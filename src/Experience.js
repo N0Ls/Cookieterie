@@ -123,7 +123,7 @@ export default class Experience {
             ease: "power2.inOut",
           });
           gsap.to(this.camera.instance, {
-            fov: 75,
+            fov: this.camera.maxFOV,
             duration: 1,
             ease: "power2.inOut",
             onUpdate: () => {
@@ -137,8 +137,8 @@ export default class Experience {
           //controls.enabled = false;
         } else if (intersects[0].object.name === "RaycastTarget") {
           gsap.to(this.camera.instance.position, {
-            x: this.cameraInPosition.position.x,
-            y: this.cameraInPosition.position.y + 1,
+            x: this.cameraInPosition.position.x - 0.5,
+            y: this.cameraInPosition.position.y,
             z: this.cameraInPosition.position.z,
             duration: 1,
             ease: "power2.inOut",

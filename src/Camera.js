@@ -12,13 +12,15 @@ export default class Camera
       this.scene = this.experience.scene
       this.canvas = this.experience.canvas
 
+      this.maxFOV = 85
+
       this.setInstance()
       this.setControls()
     }
 
     setInstance()
     {
-        this.instance = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
+        this.instance = new THREE.PerspectiveCamera(this.maxFOV, this.sizes.width / this.sizes.height, 0.1, 100)
         this.instance.position.set(1, 1, 1)
 
         /* ORTHOGRAPHIC CAMERA */
@@ -35,10 +37,12 @@ export default class Camera
         this.controls.enableDamping = true
         this.controls.enablePan = false;
         this.controls.enableZoom = true;
-        this.controls.minDistance = 3;
-        this.controls.maxDistance = 8;
-        this.controls.minAzimuthAngle = -Math.PI / 4;
-        this.controls.maxAzimuthAngle = (Math.PI * 3) / 4;
+        this.controls.minDistance = 2.5;
+        this.controls.maxDistance = 3.1;
+        this.controls.minAzimuthAngle = -Math.PI / 4 + 0.2;
+        this.controls.maxAzimuthAngle = (Math.PI * 3) / 4 - 0.2;
+        this.controls.minPolarAngle = Math.PI / 4;
+        this.controls.maxPolarAngle = Math.PI / 2;
     }
 
     resize()
