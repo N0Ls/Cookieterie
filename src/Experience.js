@@ -137,8 +137,8 @@ export default class Experience {
           //controls.enabled = false;
         } else if (intersects[0].object.name === "RaycastTarget") {
           gsap.to(this.camera.instance.position, {
-            x: this.cameraInPosition.position.x - 0.5,
-            y: this.cameraInPosition.position.y,
+            x: this.cameraInPosition.position.x - 0.3,
+            y: this.cameraInPosition.position.y + 1.8,
             z: this.cameraInPosition.position.z,
             duration: 1,
             ease: "power2.inOut",
