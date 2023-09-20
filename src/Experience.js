@@ -59,6 +59,8 @@ export default class Experience {
 
     this.isWheelSpinning = false;
 
+    this.selectedMathStats = "nils"
+
     // Resize event
     this.sizes.on("resize", () => {
       this.resize();
@@ -128,9 +130,9 @@ export default class Experience {
             ease: "power2.inOut",
             onUpdate: () => {
               this.camera.instance.updateProjectionMatrix();
-            }
+            },
           });
-          console.log(this.camera.instance)
+          console.log(this.camera.instance);
           this.camera.controls.enableRotate = true;
           this.isInCookieSelection = false;
           this.selectionDiv.style.opacity = 0;
@@ -156,7 +158,7 @@ export default class Experience {
             ease: "power2.inOut",
             onUpdate: () => {
               this.camera.instance.updateProjectionMatrix();
-            }
+            },
           });
           this.camera.controls.enableRotate = false;
           this.isInCookieSelection = true;
@@ -168,14 +170,14 @@ export default class Experience {
       }
     });
 
-    this.randomButton = document.querySelector('.randomCookieButton');
-    this.randomButton.addEventListener('click', (event) => {
-        event.stopPropagation()
-        this.randomPick();
+    this.randomButton = document.querySelector(".randomCookieButton");
+    this.randomButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      this.randomPick();
     });
 
-    this.selectedCookieText = document.querySelector('.selectedCookie');
-    this.selectionDiv = document.querySelector('.selectionDiv');
+    this.selectedCookieText = document.querySelector(".selectedCookie");
+    this.selectionDiv = document.querySelector(".selectionDiv");
   }
 
   resize() {
@@ -209,12 +211,58 @@ export default class Experience {
     //this.gui.close();
   }
 
-  randomPick = () => {
+  findCeil(arr, r, l, h) {
+    let mid;
+    while (l < h) {
+      mid = l + ((h - l) >> 1); // Same as mid = (l+h)/2
+      r > arr[mid] ? (l = mid + 1) : (h = mid);
+    }
+    return arr[l] >= r ? l : -1;
+  }
+
+  pickIndexWithWeight(freq, n) {
+    let prefix = [];
+    let i;
+    prefix[0] = freq[0];
+    for (i = 1; i < n; ++i) prefix[i] = prefix[i - 1] + freq[i];
+
+    let r = Math.floor(Math.random() * prefix[n - 1]) + 1;
+
+    let indexc = this.findCeil(prefix, r, 0, n - 1);
+    return indexc;
+  }
+
+  async pickingCookieWithMath() {
+
+    const fetchMath = await fetch("./math-stats/" + this.selectedMathStats + "-math.json");
+    const stats = await fetchMath.json();
+
+    // const cookieArray = cookieDB.cookies.map((cookie) => cookie.name);
+
+    const cookieStats = stats.stats.map((stat) => stat.weight);
+
+    const cookieIndex = this.pickIndexWithWeight(cookieStats, cookieStats.length);
+
+    // const res = {};
+    // //copy the array as keys
+    // cookieArray.forEach((key) => (res[key] = 0));
+
+    // for(let i = 0; i < 1000; i++){
+    //     const resultatPick = cookieArray[this.pickIndexWithWeight(cookieStats, cookieStats.length)];
+    //     res[resultatPick] += 1;
+    // }
+
+    // console.log(res);
+
+    return cookieIndex;
+
+  }
+
+   randomPick = () => {
     this.selectedCookieText.innerHTML = "Picking...";
-    if(this.isWheelSpinning) return;
+    if (this.isWheelSpinning) return;
     this.isWheelSpinning = true;
-    const cookieIndex = Math.floor(Math.random() * this.numberOfCookies);
-    console.log("Pick = " + cookieIndex);
+    const cookieIndex = this.pickingCookieWithMath().then((cookieIndex) => {
 
     const indexObject = { index: this.cookieMaterialRef.uniforms.uIndex.value };
 
@@ -240,6 +288,7 @@ export default class Experience {
         this.isWheelSpinning = false;
       },
     });
+    });
   };
 
   onDoSomething() {
@@ -256,7 +305,7 @@ export default class Experience {
       // Test if it's a mesh
       if (child instanceof THREE.Mesh) {
         child.geometry.dispose();
-    
+
         // Loop through the material properties
         for (const key in child.material) {
           const value = child.material[key];

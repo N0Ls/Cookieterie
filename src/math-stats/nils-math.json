@@ -1,0 +1,148 @@
+{
+	"stats": [
+		{
+			"weight": 5,
+			"name": "Tartine moi"
+		},
+		{
+			"weight": 15,
+			"name": "Tartine moi plus fort"
+		},
+		{
+			"weight": 5,
+			"name": "Tro'Choux"
+		},
+		{
+			"weight": 30,
+			"name": "Troublion"
+		},
+		{
+			"weight": 5,
+			"name": "Wee Treat Noir"
+		},
+		{
+			"weight": 1,
+			"name": "Wee Treat Lait"
+		},
+		{
+			"weight": 15,
+			"name": "Pistache Toi Même Noir"
+		},
+		{
+			"weight": 1,
+			"name": "P'Tite Toutoune"
+		},
+		{
+			"weight": 1,
+			"name": "Sésame Ouvre Toi"
+		},
+		{
+			"weight": 15,
+			"name": "Signature"
+		},
+		{
+			"weight": 5,
+			"name": "So Gentleman"
+		},
+		{
+			"weight": 5,
+			"name": "Suprise Me"
+		},
+		{
+			"weight": 15,
+			"name": "Marry Me"
+		},
+		{
+			"weight": 1,
+			"name": "Matcha Cranberry"
+		},
+		{
+			"weight": 1,
+			"name": "Matcha Lait"
+		},
+		{
+			"weight": 5,
+			"name": "Matcha Noir"
+		},
+		{
+			"weight": 5,
+			"name": "Moi Tarzan, Toi Jane"
+		},
+		{
+			"weight": 5,
+			"name": "Noirot"
+		},
+		{
+			"weight": 5,
+			"name": "Je Veux Un Câlin"
+		},
+		{
+			"weight": 5,
+			"name": "Just Dough It Canelle"
+		},
+		{
+			"weight": 1,
+			"name": "Just Dough It Chocolat"
+		},
+		{
+			"weight": 5,
+			"name": "Just Dough It Sésame Noir"
+		},
+		{
+			"weight": 1,
+			"name": "Just Dough It Matcha"
+		},
+		{
+			"weight": 1,
+			"name": "Just Dough It Vanille"
+		},
+		{
+			"weight": 5,
+			"name": "Drive Me Nuts"
+		},
+		{
+			"weight": 5,
+			"name": "Dulcey"
+		},
+		{
+			"weight": 30,
+			"name": "Give Me More"
+		},
+		{
+			"weight": 15,
+			"name": "Indulge Me"
+		},
+		{
+			"weight": 5,
+			"name": "Je t'épouse dans l'heure"
+		},
+		{
+			"weight": 15,
+			"name": "Je t'épouse dans l'heure banane"
+		},
+		{
+			"weight": 5,
+			"name": "Alaska"
+		},
+		{
+			"weight": 5,
+			"name": "Au Saut Du Lit"
+		},
+		{
+			"weight": 15,
+			"name": "Back To Basics"
+		},
+		{
+			"weight": 15,
+			"name": "Bog"
+		},
+		{
+			"weight": 1,
+			"name": "Cocoliscious Lait"
+		},
+		{
+			"weight": 30,
+			"name": "Divorce Me"
+		}
+	]
+}
