@@ -38,7 +38,7 @@ export default class Camera
         this.controls.enablePan = false;
         this.controls.enableZoom = true;
         this.controls.minDistance = 2.5;
-        this.controls.maxDistance = 3.1;
+        this.controls.maxDistance = 3.8;
         this.controls.minAzimuthAngle = -Math.PI / 4 + 0.2;
         this.controls.maxAzimuthAngle = (Math.PI * 3) / 4 - 0.2;
         this.controls.minPolarAngle = Math.PI / 4;
