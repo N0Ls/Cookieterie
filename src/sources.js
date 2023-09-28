@@ -7,7 +7,7 @@ export default [
   {
     name: 'cookieTexture',
     type: 'texture',
-    path: './textures/cookieTextureTest2.png'
+    path: './textures/cookieTextureTest2.webp'
   },
   {
     name: 'bakedCookieTexture',

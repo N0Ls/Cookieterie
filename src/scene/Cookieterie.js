@@ -53,6 +53,9 @@ export default class Cookieterie
         const glowWindowMesh = this.model.children.find(
             (child) => child.name === "GlowWindow"
         );
+        const glowWindowMesh2 = this.model.children.find(
+            (child) => child.name === "GlowWindow2"
+        );
         const cookieWindowMesh = this.model.children.find(
             (child) => child.name === "CookieWindow"
         );
@@ -83,6 +86,7 @@ export default class Cookieterie
     
         glowDoorMesh.material = poleLightMaterial;
         glowWindowMesh.material = poleLightMaterial;
+        glowWindowMesh2.material = poleLightMaterial;
         computerScreenMesh.material = computerScreenMaterial;
         computerScreen2Mesh.material = computerScreenMaterial;
         cookieWindowMesh.material = glassMaterial;
