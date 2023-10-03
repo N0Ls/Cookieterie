@@ -136,6 +136,7 @@ export default class Experience {
           this.camera.controls.enableRotate = true;
           this.isInCookieSelection = false;
           this.selectionDiv.style.opacity = 0;
+          this.selectedCookieText.style.opacity = 0;
           //controls.enabled = false;
         } else if (intersects[0].object.name === "RaycastTarget") {
           gsap.to(this.camera.instance.position, {
@@ -159,6 +160,9 @@ export default class Experience {
             onUpdate: () => {
               this.camera.instance.updateProjectionMatrix();
             },
+            onComplete: () => {
+              this.selectedCookieText.style.opacity = 1;
+            }
           });
           this.camera.controls.enableRotate = false;
           this.isInCookieSelection = true;

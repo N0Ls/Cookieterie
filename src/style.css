@@ -63,11 +63,12 @@ body {
     bottom: 119px;
     transition: opacity 1s ease;
     opacity: 0;
-
 }
 
 .selectedCookie{
     font-family: sans-serif;
-    margin-bottom: 25px;
+    margin-bottom: 315px;
     color: white;
+    transition: opacity 0s ease;
+    opacity: 0;
 }
