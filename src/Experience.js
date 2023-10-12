@@ -15,6 +15,8 @@ import cookieDB from "./cookies.json";
 
 let instance = null;
 
+const isDebug = false;
+
 export default class Experience {
   constructor(canvas) {
     // Singleton
@@ -196,7 +198,6 @@ export default class Experience {
   }
 
   init() {
-    const isDebug = true;
     if (isDebug) {
       this.initGUI();
     }
@@ -324,7 +325,6 @@ export default class Experience {
 
     instance = null;
 
-    const isDebug = true;
     if (isDebug) {
       if (this.gui.active) this.gui.ui.destroy();
     }
