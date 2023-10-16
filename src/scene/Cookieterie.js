@@ -44,7 +44,7 @@ export default class Cookieterie
         const glassMaterial = new THREE.MeshPhysicalMaterial({
             roughness: 0,
             transmission: 1,
-            thickness: 0.01,
+            thickness: 0.1,
         });
 
         const glowDoorMesh = this.model.children.find(

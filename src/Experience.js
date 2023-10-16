@@ -61,6 +61,8 @@ export default class Experience {
 
     this.isWheelSpinning = false;
 
+    this.hasEnteredExperience = false;
+
     this.selectedMathStats = "nils"
 
     // Resize event
@@ -98,6 +100,7 @@ export default class Experience {
 
     //cast on click
     window.addEventListener("click", (event) => {
+      if(!this.hasEnteredExperience) return;
       if (this.disableRaycast) return;
       //mouse position
       const mouse = new THREE.Vector2(
@@ -174,6 +177,29 @@ export default class Experience {
 
         //randomPick();
       }
+    });
+
+    this.welcomeDiv = document.querySelector(".welcome-div");
+    this.startButton = document.querySelector(".startButton");
+
+    this.startButton.addEventListener("click", (event) => {
+      const loaderHTML = document.querySelector(".loader");
+      loaderHTML.style.opacity = 0;
+
+      setTimeout(() => {
+        this.hasEnteredExperience = true;
+      }, 1000);
+    })
+
+    this.resources.on('ready', () => {
+      // Add fake time
+      setTimeout(() => {
+        const svgLoader = document.querySelector(".svg-loader");
+        svgLoader.style.opacity = 0;
+        this.welcomeDiv.style.opacity = 1;
+        this.startButton.style.opacity = 1;
+      }, 1300);
+
     });
 
     this.randomButton = document.querySelector(".randomCookieButton");
